@@ -1,32 +1,43 @@
 import './App.css'
 import Button from './Button'
+import List from './List'
+import { useState } from 'react';
+
+const classList = [
+  'Kaitlin',
+  'Ross',
+  'Tyler',
+  'Thomas',
+  'Cathy',
+  'Omid',
+  'Jeremy',
+  'Julie',
+  'Ethan',
+  'Eric',
+  'Andrew',
+  'Bug',
+  'Daniel'
+];
 
 function App() {
-  const classList = [
-    'Kaitlin',
-    'Ross',
-    'Tyler',
-    'Thomas',
-    'Cathy',
-    'Omid',
-    'Jeremy',
-    'Julie',
-    'Ethan',
-    'Eric',
-    'Andrew',
-    'Bug',
-    'Daniel'
-  ];
+  const [list, setList] = useState<string[]>([]);
 
-  function handleRandomizer() {
-    const randIndex = Math.floor(Math.random() * classList.length);
-    classList.splice(randIndex, 1);
-    console.log(classList[randIndex]);
+  function handleRandomAdd(): void {
+    if (classList.length) {
+      const randIndex = Math.floor(Math.random() * classList.length);
+      const newList = [...list, classList[randIndex]];
+      classList.splice(randIndex, 1);
+      setList(newList);
+    } else {
+      alert('Empty');
+    }
   }
 
   return (
     <>
-      <Button text="Get Random" onCustomClick={handleRandomizer}/>
+      <h1 className='underline'>Hello</h1>
+      <List customList={list}/>
+      <Button text="Get Random" onCustomClick={handleRandomAdd}/>
     </>
   )
 }
