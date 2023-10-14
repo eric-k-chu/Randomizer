@@ -1,6 +1,6 @@
 function List({ customList }: {customList: string[]}) {
     return (
-        <ul>{customList.map(n => <li key={n}>{n}</li>)}</ul>
+        <ul className="text-center">{customList.map(n => <li key={n}>{n}</li>)}</ul>
     )
 }
 

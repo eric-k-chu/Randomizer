@@ -1,6 +1,6 @@
-function Button({ text, onCustomClick }: {text: string, onCustomClick: Function }) {
+function Button({ text, onCustomClick, rounded }: {text: string, onCustomClick?: Function, rounded?: boolean }) {
     return (
-        <button onClick={() => onCustomClick()}>{text}</button>
+        <button className={rounded ? "rounded-3xl" : undefined} onClick={() => onCustomClick?.()}>{text}</button>
     )
 }
 
