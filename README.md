@@ -1,2 +1,2 @@
 # Randomizer
-short react application that chooses a random name from a list of names.
+A small react application that chooses a random name from a list of names.
