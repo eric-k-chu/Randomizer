@@ -1,4 +1,4 @@
-import { Button, List } from '../Components/index'
+import { Button, List, Modal } from '../Components/index'
 import { useState } from 'react';
 
 let classList = [
@@ -21,9 +21,12 @@ const copyList = classList.map(n => n);
 
 const completedList: string[] = [];
 
+let modalText = "";
+
 function Body() {
   const [list, setList] = useState<string[]>([]);
   const [isComplete, setComplete] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   function handleRandomAdd(): void {
     if (classList.length) {
@@ -40,16 +43,21 @@ function Body() {
   function handleCopyList(): void {
     const copiedText = completedList.join('\n');
     navigator.clipboard.writeText(copiedText);
+    modalText = 'Copied to Clipboard.';
+    setShowModal(true);
   }
 
   function handleReset(): void {
     classList = copyList.map(n => n);
     setList([]);
     setComplete(false);
+
   }
 
   return (
     <div className='container mx-auto basis-11/12'>
+      
+      {showModal && <Modal modalText={modalText} isActive={setShowModal}/>}
 
       <div className='flex flex-col items-center gap-y-4 p-4'>
         <List customList={list} styles='text-center h-[35rem]'/>
@@ -57,7 +65,7 @@ function Body() {
 
       <div className='flex justify-around items-center'>
         { isComplete &&
-          <Button text="Copy List" onCustomClick={handleCopyList} styles='rounded-3xl w-40 bg-dark-gray-1' modalText='Copied to Clipboard.'/>
+          <Button text="Copy List" onCustomClick={handleCopyList} styles='rounded-3xl w-40 bg-dark-gray-1'/>
         }
         <Button text="Get Random" onCustomClick={handleRandomAdd} styles='rounded-3xl w-40 bg-dark-gray-1'/>
         { isComplete &&

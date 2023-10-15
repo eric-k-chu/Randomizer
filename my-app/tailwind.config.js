@@ -16,16 +16,18 @@ export default {
       },
       animation: {
         'appear-in' : '0.5s ease-out 1 appearIn',
-        'appear-out' : '0.5s ease-out 1 1 appearOut'
+        'appear-out' : '0.5s ease-out 1s 1 appearOut'
       },
       keyframes: {
         appearIn: {
           '0%' : { opacity: '0' },
-          '100%' : { opacity: '1'}
+          '50%' : { opacity: '0.5'},
+          '100%' : { opacity: '1' }
         },
         appearOut: {
           '0%' : { opacity: '1'},
-          '100%' : { opacity: '0'}
+          '50%' : { opacity: '0.5'},
+          '100%' : { opacity: '0' }
         }
       }
     },
