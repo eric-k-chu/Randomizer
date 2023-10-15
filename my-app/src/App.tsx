@@ -34,15 +34,22 @@ function App() {
   }
 
   return (
-    <>
-      <div className='container mx-auto'>
-        <div className='flex flex-col align-center justify-around gap-y-4'>
+    <div className='flex flex-col font-serif h-screen'>
+      <div className='container mx-auto basis-1/5'>
+        <div className='flex justify-center align-center'>
           <h1>Randomizer</h1>
-          <List customList={list}/>
-          <Button text="Get Random" onCustomClick={handleRandomAdd} rounded={true}/>
+          <Button text="About"/>
         </div>
       </div>
-    </>
+      <div className='container mx-auto basis-3/5'>
+        <List customList={list}/>
+      </div>
+      <div className='container mx-auto basis-1/5'>
+        <div className='flex flex-col items-center justify-center'>
+          <Button text="Get Random" onCustomClick={handleRandomAdd} styles="rounded-3xl w-40"/>
+        </div>
+      </div>
+    </div>
   )
 }
 
