@@ -1,5 +1,4 @@
-import Button from './Button'
-import List from './List'
+import { Button, List } from './Components/index'
 import { useState } from 'react';
 import './App.css'
 
