@@ -21,7 +21,7 @@ const copyList = classList.map(n => n);
 
 const completedList: string[] = [];
 
-let modalText = "";
+let popupText = "";
 
 function Body() {
   const [list, setList] = useState<string[]>([]);
@@ -43,7 +43,7 @@ function Body() {
   function handleCopyList(): void {
     const copiedText = completedList.join('\n');
     navigator.clipboard.writeText(copiedText);
-    modalText = 'Copied to Clipboard.';
+    popupText = 'Copied to Clipboard.';
     setShowModal(true);
   }
 
@@ -57,7 +57,7 @@ function Body() {
   return (
     <div className='container mx-auto basis-11/12'>
       
-      {showModal && <Popup modalText={modalText} isActive={setShowModal}/>}
+      {showModal && <Popup popupText={popupText} isActive={setShowModal}/>}
 
       <div className='flex flex-col items-center gap-y-4 p-4'>
         <h2>Class List:</h2>
