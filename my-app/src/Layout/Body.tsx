@@ -38,7 +38,8 @@ function Body() {
   }
 
   function handleCopyList(): void {
-    alert('yes');
+    const copiedText = completedList.join('\n');
+    navigator.clipboard.writeText(copiedText);
   }
 
   function handleReset(): void {
@@ -56,7 +57,7 @@ function Body() {
 
       <div className='flex justify-around items-center'>
         { isComplete &&
-          <Button text="Copy List" onCustomClick={handleCopyList} styles='rounded-3xl w-40 bg-dark-gray-1'/>
+          <Button text="Copy List" onCustomClick={handleCopyList} styles='rounded-3xl w-40 bg-dark-gray-1' modalText='Copied to Clipboard.'/>
         }
         <Button text="Get Random" onCustomClick={handleRandomAdd} styles='rounded-3xl w-40 bg-dark-gray-1'/>
         { isComplete &&
