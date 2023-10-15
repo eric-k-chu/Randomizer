@@ -44,6 +44,7 @@ function Body() {
   function handleReset(): void {
     classList = copyList.map(n => n);
     setList([]);
+    setComplete(false);
   }
 
   return (

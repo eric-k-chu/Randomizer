@@ -13,6 +13,15 @@ export default {
       colors: {
         'dark-gray-1': '#242424',
         'dark-gray-2': '#1A1A1A',
+      },
+      animation: {
+        'appear-in' : '0.5s ease-out 1 appearIn'
+      },
+      keyframes: {
+        appearIn: {
+          '0%' : { opacity: '0' },
+          '100%' : { opacity: '1'}
+        }
       }
     },
   },
