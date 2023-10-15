@@ -1,4 +1,4 @@
-import { Button, List, Modal } from '../Components/index'
+import { Button, List, Popup } from '../Components/index'
 import { useState } from 'react';
 
 let classList = [
@@ -57,9 +57,10 @@ function Body() {
   return (
     <div className='container mx-auto basis-11/12'>
       
-      {showModal && <Modal modalText={modalText} isActive={setShowModal}/>}
+      {showModal && <Popup modalText={modalText} isActive={setShowModal}/>}
 
       <div className='flex flex-col items-center gap-y-4 p-4'>
+        <h2>Class List:</h2>
         <List customList={list} styles='text-center h-[35rem]'/>
       </div>
 
