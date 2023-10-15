@@ -9,6 +9,10 @@ export default {
     extend: {
       fontFamily: {
         'serif': ['Recursive', 'sans-serif']
+      },
+      colors: {
+        'dark-gray-1': '#242424',
+        'dark-gray-2': '#1A1A1A',
       }
     },
   },
