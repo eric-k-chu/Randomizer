@@ -1,21 +1,7 @@
 import { Button, List, Popup } from '../Components'
 import { useState } from 'react';
 
-let classList = [
-  'Kaitlin',
-  'Ross',
-  'Tyler',
-  'Thomas',
-  'Cathy',
-  'Omid',
-  'Jeremy',
-  'Julie',
-  'Ethan',
-  'Eric',
-  'Andrew',
-  'Bug',
-  'Daniel'
-];
+let classList: string[] = [];
 
 const copyList = classList.map(n => n);
 
