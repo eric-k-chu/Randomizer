@@ -26,7 +26,7 @@ let popupText = "";
 function Body() {
   const [list, setList] = useState<string[]>([]);
   const [isComplete, setComplete] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   function handleRandomAdd(): void {
     if (classList.length) {
@@ -44,7 +44,7 @@ function Body() {
     const copiedText = completedList.join('\n');
     navigator.clipboard.writeText(copiedText);
     popupText = 'Copied to Clipboard.';
-    setShowModal(true);
+    setShowPopup(true);
   }
 
   function handleReset(): void {
@@ -55,13 +55,14 @@ function Body() {
   }
 
   return (
-    <div className='container mx-auto basis-11/12'>
+    <div className='container mx-auto basis-10/12'>
       
-      {showModal && <Popup popupText={popupText} isActive={setShowModal}/>}
+      {showPopup && <Popup popupText={popupText} isActive={setShowPopup}/>}
 
-      <div className='flex flex-col items-center gap-y-4 p-4'>
-        <h2>Class List:</h2>
-        <List customList={list} styles='text-center h-[35rem]'/>
+      <div className='flex flex-col items-center gap-y-4 p-4 h-[35rem]'>
+        <span>Class List:</span>
+        {list.length === 0 && <h3>No students in this list.</h3>}
+        <List customList={list} styles='text-center'/>
       </div>
 
       <div className='flex justify-around items-center'>

@@ -1,10 +1,11 @@
-import { NavBar, Body } from './Layout/index'
+import { NavBar, Body, Footer } from './Layout/index'
 
 function App() {
   return (
     <>
       <NavBar />
       <Body />
+      <Footer />
     </>
   )
 }
