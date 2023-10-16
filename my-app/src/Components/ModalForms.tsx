@@ -12,7 +12,6 @@ function InsertForm({ isActive }: {isActive: Function }) {
       isActive(false);
     }
   
-  
     return (
       <div className='flex flex-col items-center justify-center absolute top-0 left-0 w-full h-full'>
         <div className='w-72 h-[32rem] bg-dark-gray-1 p-2 rounded-md shadow-lg'>
