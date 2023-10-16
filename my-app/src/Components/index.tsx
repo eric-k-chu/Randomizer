@@ -1,10 +1,11 @@
 import Button from './Button'
 import List from './List'
-import { Popup, InsertModal } from './Modal'
+import Popup from './Modal'
+import InsertForm from './ModalForms'
 
 export {
 	Button,
 	List,
 	Popup,
-	InsertModal
+	InsertForm
 }

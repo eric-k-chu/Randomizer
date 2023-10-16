@@ -1,4 +1,4 @@
-import { Button, List, Popup } from '../Components/index'
+import { Button, List, Popup } from '../Components'
 import { useState } from 'react';
 
 let classList = [
@@ -22,6 +22,10 @@ const copyList = classList.map(n => n);
 const completedList: string[] = [];
 
 let popupText = "";
+
+function setClassList(list: string[]): void {
+  classList = list.map(n => n);
+}
 
 function Body() {
   const [list, setList] = useState<string[]>([]);
@@ -78,4 +82,7 @@ function Body() {
   )
 }
 
-export default Body
+export {
+  Body,
+  setClassList
+}

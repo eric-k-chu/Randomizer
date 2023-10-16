@@ -1,17 +1,8 @@
-import { Button, InsertModal } from '../Components/index';
+import { Button, InsertForm } from '../Components';
 import { useState } from 'react'
-
-let classList = [];
 
 function NavBar() {
   const [showModal, setShowModal] = useState(false);
-
-  function handleInsertClassList() {
-
-  }
-
-
-
 
   return (
     <div className='bg-dark-gray-1 basis-1/12'>
@@ -19,8 +10,8 @@ function NavBar() {
         <div className='flex justify-around items-center'>
           <h1 className='basis-1/2'>Randomizer</h1>
           <div className='flex items-center justify-end basis-1/2'>
-            <Button text="Insert Class List" onCustomClick={() => setShowModal(true)}/>
-            {showModal && <InsertModal isActive={setShowModal}/>}
+            <Button text="Insert Class List" onCustomClick={() => setShowModal(true)} styles='bg-dark-gray-2'/>
+            {showModal && <InsertForm isActive={setShowModal}/>}
           </div>
         </div>
       </div>
