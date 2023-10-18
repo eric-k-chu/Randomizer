@@ -68,7 +68,7 @@ function Body() {
       
       {showModal && <InsertForm isActive={setShowModal} onInsert={handleInsertClassList} />}
 
-      <div className='flex justify-center basis-3/4 w-full'>
+      <div className='flex justify-center basis-3/4 w-full text-black dark:text-white'>
         <Card title='Class List' listToDisplay={classList}/>
         <div className='basis-1/3 flex flex-col items-center justify-center gap-y-4'>
           <p className=' w-full h-16 text-center'>{showRandomName}</p>
