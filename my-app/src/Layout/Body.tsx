@@ -18,7 +18,7 @@ function Body() {
         setList(classList.map(n => n));
       }
     } else {
-      alert('You have no students in the class list getRando.');
+      alert('You have no students in the class list.');
     }
   }
 
@@ -28,7 +28,7 @@ function Body() {
       navigator.clipboard.writeText(copiedText);
       alert('Copied to clipboard.');
     } else {
-      alert('You have no students in the class list copy.');
+      alert('You have no students in the class list.');
     }
   }
 
@@ -39,7 +39,7 @@ function Body() {
       setClassListCopy([]);
       setShowRandomName("");
     } else {
-      alert('You have no students in the class list reset.');
+      alert('You have no students in the class list.');
     }
   }
 
@@ -59,24 +59,24 @@ function Body() {
       }
       setClassListCopy(randomList);
     } else {
-      alert('You have no students in the class list genrando.');
+      alert('You have no students in the class list.');
     }
   }
 
   return (
-    <div className='container mx-auto basis-10/12'>
+    <div className='container mx-auto basis-10/12 flex flex-col items-center justify-center'>
       
       {showModal && <InsertForm isActive={setShowModal} onInsert={handleInsertClassList} />}
 
-      <div className='flex justify-center p-4 h-[35rem] gap-x-16'>
+      <div className='flex justify-center basis-3/4 w-full'>
         <Card title='Class List' listToDisplay={classList}/>
-        <div className='w-60 flex flex-col items-center justify-center gap-y-4'>
+        <div className='basis-1/3 flex flex-col items-center justify-center gap-y-4'>
           <p className=' w-full h-16 text-center'>{showRandomName}</p>
         </div>
         <Card title='Randomized' listToDisplay={classListCopy} />
       </div>
 
-      <div className='flex justify-center p-4 gap-x-4 items-center'>
+      <div className='flex justify-center p-4 gap-x-4 items-center basis-1/4'>
         <Button text="Add Class List" onCustomClick={() => setShowModal(true)} styles='rounded-3xl w-40 bg-dark-gray-1'/>
         <Button text="Randomize" onCustomClick={handleGenerateRandom} styles='rounded-3xl w-40 bg-dark-gray-1'/>
         <Button text="Get Random" onCustomClick={handleGetRandom} styles='rounded-3xl w-40 bg-dark-gray-1'/>
