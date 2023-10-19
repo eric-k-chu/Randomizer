@@ -1,7 +1,7 @@
 import { Button, InsertForm, Card } from '../Components'
 import { useState } from 'react';
 
-const buttonStyle1 = 'rounded-3xl w-40 bg-dark-gray-1 transform transition duration-500 hover:scale-110';
+const buttonStyle1 = 'rounded-3xl w-40 bg-dark-gray-1 transform transition duration-500 hover:scale-110 shadow-lg ';
 
 
 function Body() {
