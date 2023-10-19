@@ -4,9 +4,9 @@ import sunIcon from '../assets/sun-solid.svg';
 function NavBar({ isDarkMode, setDarkMode }: { isDarkMode: boolean, setDarkMode: Function }) {
   return (
     <div className='bg-dark-gray-1 basis-1/12 w-full'>
-      <div className='container mx-auto p-4'>
-        <div className='flex justify-between items-center'>
-          <h1 className='basis-1/2'>Randomizer</h1>
+      <div className='container mx-auto p-4 h-full'>
+        <div className='flex justify-between items-center h-full'>
+          <h2 className='basis-1/2 text-3xl'>Randomizer</h2>
           <img 
             src={isDarkMode ? moonIcon : sunIcon} 
             onClick={() => setDarkMode((bool: boolean) => !bool)}
