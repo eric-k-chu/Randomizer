@@ -1,7 +1,7 @@
 import { Button, InsertForm, Card } from '../Components'
 import { useState } from 'react';
 
-const buttonStyle1 = 'rounded-3xl w-40 bg-dark-gray-1 transform transition duration-500 hover:scale-110 shadow-lg ';
+const buttonStyle1 = 'rounded-3xl w-40 bg-dark-gray-1 transform transition duration-500 hover:scale-110 shadow-md dark:shadow-zinc-700';
 
 
 function Body() {
@@ -46,12 +46,12 @@ function Body() {
     }
   }
 
-  function handleInsertClassList(insertList: string[]) {
+  function handleInsertClassList(insertList: string[]): void {
     setClassList(insertList.map(n => n));
     setList(insertList.map(n => n));
   }
 
-  function handleGenerateRandom() {
+  function handleGenerateRandom(): void {
     if (classList.length > 0) {
       const copyList = classList.map(n => n);
       const randomList: string[] = [];
