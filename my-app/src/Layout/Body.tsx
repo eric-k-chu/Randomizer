@@ -1,6 +1,9 @@
 import { Button, InsertForm, Card } from '../Components'
 import { useState } from 'react';
 
+const buttonStyle1 = 'rounded-3xl w-40 bg-dark-gray-1 transform transition duration-500 hover:scale-110';
+
+
 function Body() {
   const [classList, setClassList] = useState<string[]>([]);
   const [list, setList] = useState<string[]>([]);
@@ -77,11 +80,11 @@ function Body() {
       </div>
 
       <div className='flex justify-center p-4 gap-x-4 items-center basis-1/4'>
-        <Button text="Add Class List" onCustomClick={() => setShowModal(true)} styles='rounded-3xl w-40 bg-dark-gray-1'/>
-        <Button text="Randomize" onCustomClick={handleGenerateRandom} styles='rounded-3xl w-40 bg-dark-gray-1'/>
-        <Button text="Get Random" onCustomClick={handleGetRandom} styles='rounded-3xl w-40 bg-dark-gray-1'/>
-        <Button text="Reset" onCustomClick={handleReset} styles='rounded-3xl w-40 bg-dark-gray-1'/>
-        <Button text="Copy List" onCustomClick={handleCopyList} styles='rounded-3xl w-40 bg-dark-gray-1'/>
+        <Button text="Add Class List" onCustomClick={() => setShowModal(true)} styles={buttonStyle1}/>
+        <Button text="Randomize" onCustomClick={handleGenerateRandom} styles={buttonStyle1}/>
+        <Button text="Get Random" onCustomClick={handleGetRandom} styles={buttonStyle1}/>
+        <Button text="Reset" onCustomClick={handleReset} styles={buttonStyle1}/>
+        <Button text="Copy List" onCustomClick={handleCopyList} styles={buttonStyle1}/>
       </div>
     </div>
   )

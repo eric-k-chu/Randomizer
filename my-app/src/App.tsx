@@ -2,7 +2,7 @@ import { NavBar, Body, Footer } from './Layout/index'
 import { useState } from 'react'
 
 function App() {
-  const [isDarkMode, setDarkMode] = useState(true);
+  const [isDarkMode, setDarkMode] = useState(false);
 
   return (
     <div className={isDarkMode ? 'dark' : 'light'} >
