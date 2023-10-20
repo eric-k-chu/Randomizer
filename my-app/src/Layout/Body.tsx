@@ -7,7 +7,6 @@ const buttonStyle1 = 'rounded-3xl w-40 bg-dark-gray-1 transform transition durat
 function Body() {
   const [classList, setClassList] = useState<string[]>([]);
   const [list, setList] = useState<string[]>([]);
-  const [classListCopy, setClassListCopy] = useState<string[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [showRandomName, setShowRandomName] = useState("");
 
@@ -25,45 +24,9 @@ function Body() {
     }
   }
 
-  function handleCopyList(): void {
-    if (classList.length > 0) {
-      const copiedText = classListCopy.join('\n');
-      navigator.clipboard.writeText(copiedText);
-      alert('Copied to clipboard.');
-    } else {
-      alert('You have no students in the class list.');
-    }
-  }
-
-  function handleReset(): void {
-    if (classList.length > 0) {
-      setClassList([]);
-      setList([]);
-      setClassListCopy([]);
-      setShowRandomName("");
-    } else {
-      alert('You have no students in the class list.');
-    }
-  }
-
   function handleInsertClassList(insertList: string[]): void {
     setClassList(insertList.map(n => n));
     setList(insertList.map(n => n));
-  }
-
-  function handleGenerateRandom(): void {
-    if (classList.length > 0) {
-      const copyList = classList.map(n => n);
-      const randomList: string[] = [];
-      while (copyList.length > 0) {
-        const randIndex = Math.floor(Math.random() * copyList.length);
-        randomList.push(copyList[randIndex]);
-        copyList.splice(randIndex, 1);
-      }
-      setClassListCopy(randomList);
-    } else {
-      alert('You have no students in the class list.');
-    }
   }
 
   return (
@@ -74,10 +37,7 @@ function Body() {
       <div className='flex justify-center basis-3/4 w-full text-black dark:text-white'>
         <div className='flex flex-col justify-center gap-y-4 text-white'>
           <Button text="Add Class List" onCustomClick={() => setShowModal(true)} styles={buttonStyle1}/>
-          <Button text="Randomize" onCustomClick={handleGenerateRandom} styles={buttonStyle1}/>
           <Button text="Get Random" onCustomClick={handleGetRandom} styles={buttonStyle1}/>
-          <Button text="Reset" onCustomClick={handleReset} styles={buttonStyle1}/>
-          <Button text="Copy List" onCustomClick={handleCopyList} styles={buttonStyle1}/>
         </div>
         <div className='basis-1/3 flex flex-col items-center justify-center gap-y-4'>
           <p className=' w-full h-16 text-center text-black dark:text-white'>{showRandomName}</p>
