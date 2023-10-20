@@ -1,5 +1,5 @@
 import Button from './Button'
-import List from './List'
+import { List, SearchList } from './List'
 import InsertForm from './Modal'
 import Card from './Card'
 import SearchBar from './SearchBar'
@@ -9,5 +9,6 @@ export {
 	List,
 	InsertForm,
 	Card,
-	SearchBar
+	SearchBar,
+	SearchList
 }

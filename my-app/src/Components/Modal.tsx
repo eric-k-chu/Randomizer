@@ -10,7 +10,7 @@ type InsertFormProps = {
 function InsertForm({ isActive, onInsert, onCustomClick }: InsertFormProps) {
     const textAreaID = React.useId();
   
-    function handleSubmit(e: React.FormEvent<HTMLFormElement> & {target: HTMLFormElement}) {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement> & {target: HTMLFormElement}): void {
       e.preventDefault();
       const textArea = e.target[0] as HTMLTextAreaElement;
       onInsert(textArea.value.split('\n'));
