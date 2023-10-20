@@ -20,7 +20,7 @@ function SearchBar({ placeText }: SearchBarProps) {
 
       {showList && 
         <div className='w-full z-index-50 absolute flex top-8 justify-center rounded-b-2xl shadow-lg'>
-          <div className='w-full bg-black text-black rounded-b-2xl'>
+          <div className='w-full bg-white text-black rounded-b-2xl'>
             <p className='p-2'>HEllo</p>
             <p className='p-2'>HEllo</p>
             <p className='p-2'>HEllo</p>
