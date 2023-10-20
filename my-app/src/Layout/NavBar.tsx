@@ -16,7 +16,7 @@ function NavBar({ isDarkMode, setDarkMode }: NavBarProps) {
           <img src={logo}/>
           <h2 className='text-3xl'>Randomizer</h2>
         </div>
-        <div className='basis-1/3 flex max-w-xs h-full p-6'>
+        <div className='basis-1/3 flex max-w-xs h-full px-6 max-h-8'>
           <SearchBar placeText='Search lists to Randomize'/>
         </div>
         <div className='basis-1/3 flex gap-x-2 items-center justify-end'>
