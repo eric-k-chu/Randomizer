@@ -7,7 +7,6 @@ type ButtonProps = {
   type?: ButtonType;
 }
 
-
 function Button({ text, onCustomClick, styles, type }: ButtonProps) {
   return (
     <button className={styles} onClick={() => onCustomClick?.()} type={type ? type : "button"}>{text}</button>

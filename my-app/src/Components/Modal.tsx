@@ -1,9 +1,13 @@
 import React from 'react'
 import { Button } from '.'
 
+type InsertFormProps = {
+  isActive: Function;
+  onInsert: Function;
+  onCustomClick?: Function;
+}
 
-
-function InsertForm({ isActive, onInsert, onCustomClick }: {isActive: Function, onInsert: Function, onCustomClick?: Function }) {
+function InsertForm({ isActive, onInsert, onCustomClick }: InsertFormProps) {
     const textAreaID = React.useId();
   
     function handleSubmit(e: React.FormEvent<HTMLFormElement> & {target: HTMLFormElement}) {
