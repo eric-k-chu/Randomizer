@@ -1,14 +1,15 @@
-import { List } from './index'
-import clipboard from '../assets/copy-regular.svg';
-import edit from '../assets/pen-to-square-regular.svg'
+import { List } from './index';
+import edit from '../assets/shuffle-solid.svg';
+import plus from '../assets/circle-plus.svg';
 import { useState } from 'react';
 
 type CardProps = {
   title: string;
   listToDisplay: string[];
+  onAddItem?: Function;
 }
 
-function Card({ title, listToDisplay }: CardProps) {
+function Card({ title, listToDisplay, onAddItem }: CardProps) {
   const [list, setList] = useState<string[]>([]);
 
   function handleClickCopy(): void {
@@ -38,12 +39,14 @@ function Card({ title, listToDisplay }: CardProps) {
 
   return (
     <div className='basis-1/3 flex flex-col items-center bg-white dark:bg-dark-gray-1 max-w-[16rem] shadow-lg dark:shadow-zinc-700'>
-      <div className='bg-dark-gray-2 basis-1/12 flex items-center w-full justify-around text-white'>
-        <img src={clipboard} className='hover:cursor-pointer' onClick={handleClickCopy}/>
+      <div className='bg-dark-gray-2 basis-1/12 flex items-center w-full justify-evenly text-white'>
+        <img src={plus} className='hover:cursor-pointer' onClick={() => onAddItem?.()}/>
         {title}
         <img src={edit} className='hover:cursor-pointer' onClick={handleClickRandomize}/>
       </div>
-      <List customList={list.length === 0 ? listToDisplay : list} styles='text-center p-2 overflow-y-auto basis-11/12 w-full' />
+      <div className="hover:cursor-pointer" onClick={handleClickCopy}>
+        <List customList={list.length === 0 ? listToDisplay : list} styles='text-center p-2 overflow-y-auto basis-11/12 w-full'/>
+      </div>
     </div>
   )
 }

@@ -36,13 +36,12 @@ function Body() {
 
       <div className='flex justify-center basis-3/4 w-full text-black dark:text-white'>
         <div className='flex flex-col justify-center gap-y-4 text-white'>
-          <Button text="Add Class List" onCustomClick={() => setShowModal(true)} styles={buttonStyle1}/>
           <Button text="Get Random" onCustomClick={handleGetRandom} styles={buttonStyle1}/>
         </div>
         <div className='basis-1/3 flex flex-col items-center justify-center gap-y-4'>
           <p className=' w-full h-16 text-center text-black dark:text-white'>{showRandomName}</p>
         </div>
-        <Card title='Class List' listToDisplay={classList} />
+        <Card title='Class List' listToDisplay={classList} onAddItem={() => setShowModal(true)}/>
       </div>
     </div>
   )
