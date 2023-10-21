@@ -6,10 +6,11 @@ import { useState } from 'react';
 type CardProps = {
   title: string;
   listToDisplay: string[];
-  handleAdd?: Function;
+  handleClick?: Function;
+
 }
 
-function Card({ title, listToDisplay, handleAdd: onAddItem }: CardProps) {
+function Card({ title, listToDisplay, handleClick }: CardProps) {
   const [list, setList] = useState<string[]>([]);
 
   function handleClickCopy(): void {
@@ -40,12 +41,12 @@ function Card({ title, listToDisplay, handleAdd: onAddItem }: CardProps) {
   return (
     <div className='basis-1/3 flex flex-col items-center bg-white dark:bg-dark-gray-1 max-w-[16rem] shadow-lg dark:shadow-zinc-700'>
       <div className='bg-dark-gray-2 basis-1/12 flex items-center w-full justify-evenly text-white'>
-        <img src={plus} className='hover:cursor-pointer' onClick={() => onAddItem?.()}/>
+        {handleClick && <img src={plus} className='hover:cursor-pointer' onClick={() => handleClick?.()}/>}
         {title}
         <img src={edit} className='hover:cursor-pointer' onClick={handleClickRandomize}/>
       </div>
       <div className="hover:cursor-pointer" onClick={handleClickCopy}>
-        <List customList={list.length === 0 ? listToDisplay : list} styles='text-center p-2 overflow-y-auto basis-11/12 w-full'/>
+        <List customList={list.length === 0 ? listToDisplay : list} styles='text-center p-2 overflow-y-auto basis-11/12 w-full empty:hidden'/>
       </div>
     </div>
   )

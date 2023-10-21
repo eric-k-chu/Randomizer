@@ -41,7 +41,7 @@ function Body() {
         <div className='basis-1/3 flex flex-col items-center justify-center gap-y-4'>
           <p className=' w-full h-16 text-center text-black dark:text-white'>{showRandomName}</p>
         </div>
-        <Card title='Class List' listToDisplay={classList} handleAdd={() => setShowModal(true)}/>
+        <Card title='Class List' listToDisplay={classList} handleClick={() => setShowModal(true)}/>
       </div>
     </div>
   )
