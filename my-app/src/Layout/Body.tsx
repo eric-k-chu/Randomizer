@@ -20,7 +20,7 @@ function Body() {
         setList(classList.map(n => n));
       }
     } else {
-      alert('You have no students in the class list.');
+      alert('You have no items in the current list.');
     }
   }
 
