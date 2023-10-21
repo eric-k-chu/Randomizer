@@ -13,8 +13,14 @@ function InsertForm({ isActive, onInsert, onCustomClick }: InsertFormProps) {
     function handleSubmit(e: React.FormEvent<HTMLFormElement> & {target: HTMLFormElement}): void {
       e.preventDefault();
       const textArea = e.target[0] as HTMLTextAreaElement;
-      onInsert(textArea.value.split('\n'));
-      isActive(false);
+      const cleanInput = textArea.value.split('\n').filter(n => n.length > 0);
+
+      if (cleanInput.length < 1) {
+        alert("You didn't add anything dummy.")
+      } else {
+        onInsert(cleanInput);
+        isActive(false);
+      }
     }
   
     return (
@@ -22,7 +28,7 @@ function InsertForm({ isActive, onInsert, onCustomClick }: InsertFormProps) {
         <div className='w-72 h-[32rem] bg-white dark:bg-dark-gray-1 p-2 rounded-md shadow-lg'>
           <form method='post' onSubmit={handleSubmit} className='flex flex-col items-center justify-center h-[31rem] gap-y-4'>
             <label htmlFor={textAreaID} className='text-black dark:text-white'>Type the names in your class.</label>
-            <textarea id={textAreaID} rows={15} className='resize-none bg-dark-gray-2'></textarea>
+            <textarea id={textAreaID} rows={15} className='resize-none bg-dark-gray-2' required></textarea>
             <div className='flex justify-between text-xs w-64 px-3'>
               <Button text='Close' onCustomClick={() => isActive(false) } styles='bg-dark-gray-2'/>
               <Button text='Insert' styles='bg-dark-gray-2' type='submit' onCustomClick={onCustomClick}/>
