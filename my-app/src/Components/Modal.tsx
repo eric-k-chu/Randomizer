@@ -13,7 +13,8 @@ function InsertForm({ isActive, onInsert, onCustomClick }: InsertFormProps) {
     function handleSubmit(e: React.FormEvent<HTMLFormElement> & {target: HTMLFormElement}): void {
       e.preventDefault();
       const textArea = e.target[0] as HTMLTextAreaElement;
-      const cleanInput = textArea.value.split('\n').filter(n => n.length > 0);
+      const spacesOnly = /^[\s]*$/;
+      const cleanInput = textArea.value.split('\n').filter(n => n.length > 0 && !spacesOnly.test(n)).map(n => n.trim());
 
       if (cleanInput.length < 1) {
         alert("You didn't add anything dummy.")
