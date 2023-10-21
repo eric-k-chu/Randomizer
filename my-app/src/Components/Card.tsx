@@ -6,10 +6,10 @@ import { useState } from 'react';
 type CardProps = {
   title: string;
   listToDisplay: string[];
-  onAddItem?: Function;
+  handleAdd?: Function;
 }
 
-function Card({ title, listToDisplay, onAddItem }: CardProps) {
+function Card({ title, listToDisplay, handleAdd: onAddItem }: CardProps) {
   const [list, setList] = useState<string[]>([]);
 
   function handleClickCopy(): void {
