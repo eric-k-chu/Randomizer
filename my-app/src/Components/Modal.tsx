@@ -1,16 +1,19 @@
-import React from 'react'
-import { Button } from '.'
+import { useState, FormEvent, useId, ChangeEvent } from 'react'
+import { Button, SearchList } from '.'
+import data from '../data'
+import backBlackIcon from '../assets/chevron-left-black.svg'
+import mic from '../assets/mic.svg'
 
-type InsertFormProps = {
+type ModalProps = {
   isActive: Function;
-  onInsert: Function;
+  onAction?: Function;
   onCustomClick?: Function;
 }
 
-function InsertForm({ isActive, onInsert, onCustomClick }: InsertFormProps) {
-    const textAreaID = React.useId();
+function InsertForm({ isActive, onAction, onCustomClick }: ModalProps) {
+    const textAreaID = useId();
   
-    function handleSubmit(e: React.FormEvent<HTMLFormElement> & {target: HTMLFormElement}): void {
+    function handleSubmit(e: FormEvent<HTMLFormElement> & {target: HTMLFormElement}): void {
       e.preventDefault();
       const textArea = e.target[0] as HTMLTextAreaElement;
       const spacesOnly = /^[\s]*$/;
@@ -19,7 +22,7 @@ function InsertForm({ isActive, onInsert, onCustomClick }: InsertFormProps) {
       if (cleanInput.length < 1) {
         alert("You didn't add anything dummy.")
       } else {
-        onInsert(cleanInput);
+        onAction?.(cleanInput);
         isActive(false);
       }
     }
@@ -38,6 +41,44 @@ function InsertForm({ isActive, onInsert, onCustomClick }: InsertFormProps) {
         </div>
       </div>
     )
+}
+
+function MobileSearchInput({ isActive }: ModalProps) {
+  const [showList, setShowList] = useState(false);
+  const [searchList, setSearchList] = useState<string[]>([]);
+
+  function handleOnInputChange(e: ChangeEvent<HTMLInputElement>): void {
+    const displayList: string[] = [];
+
+    for (const name in data.list) {
+      const input = e.target.value;
+      if (input.length > 0 && name.startsWith(input)) {
+        displayList.push(name);
+      }
+      setSearchList(displayList);
+    }
   }
 
-  export default InsertForm
+  return (
+    <div className='flex flex-col items-center justify-center w-full h-full absolute z-50 bg-white dark:bg-dark-gray-2'>
+      <div className='flex items-center justify-around basis-1/12 w-full bg-white dark:bg-dark-gray-2 px-4 border-b'>
+        <img src={backBlackIcon} onClick={() => isActive(false)} className='hover:cursor-pointer'/>
+        <div className='flex w-72 h-12 bg-white dark:bg-dark-gray-2 rounded-2xl px-2'>
+          <input 
+            type='text' 
+            placeholder="Search for lists to use"
+            className='text-black dark:text-white bg-transparent px-2' 
+            onFocus={() => setShowList(true)}
+            onBlur={() => setShowList(false)}
+            onChange={handleOnInputChange}/>
+        </div>
+        <img src={mic} />
+      </div>
+      <div className='w-full basis-11/12 flex justify-center'>
+        <SearchList customList={searchList} styles='py-4 empty:hidden w-full text-black flex flex-col items-center' maxSize='5'/>
+      </div>
+    </div>
+  )
+}
+
+export {InsertForm, MobileSearchInput}

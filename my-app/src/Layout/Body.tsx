@@ -32,16 +32,18 @@ function Body() {
   return (
     <div className='container mx-auto basis-10/12 flex flex-col items-center justify-center'>
       
-      {showModal && <InsertForm isActive={setShowModal} onInsert={handleInsertClassList} />}
+      {showModal && <InsertForm isActive={setShowModal} onAction={handleInsertClassList} />}
 
-      <div className='flex justify-center basis-3/4 w-full text-black dark:text-white'>
-        <div className='flex flex-col justify-center gap-y-4 text-white'>
+      <div className='flex-wrap flex-col lg:flex-row lg:flex-nowrap flex justify-center basis-3/4 w-full text-black dark:text-white'>
+        <div className='basis-1/3 flex flex-col justify-center items-center text-white'>
           <Button text="Get Random" onCustomClick={handleGetRandom} styles={buttonStyle1}/>
         </div>
-        <div className='basis-1/3 flex flex-col items-center justify-center gap-y-4'>
-          <p className=' w-full h-16 text-center text-black dark:text-white'>{showRandomName}</p>
+        <div className='basis-1/3 flex flex-col items-center justify-center'>
+          <p className='w-full text-center text-black dark:text-white'>{showRandomName}</p>
         </div>
-        <Card title='Class List' listToDisplay={classList} handleClick={() => setShowModal(true)}/>
+        <div className='basis-1/3 flex justify-center items-center h-full'>
+          <Card title='Class List' listToDisplay={classList} handleClick={() => setShowModal(true)}/>
+        </div>
       </div>
     </div>
   )
