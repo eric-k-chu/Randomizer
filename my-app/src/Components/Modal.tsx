@@ -16,44 +16,50 @@ function InsertForm({ isActive, onAction, onCustomClick }: ModalProps) {
   
     function handleSubmit(e: FormEvent<HTMLFormElement> & {target: HTMLFormElement}): void {
       e.preventDefault();
-      const textArea = e.target[0] as HTMLTextAreaElement;
+      const listName = e.target[0] as HTMLInputElement;
+      const listItems = e.target[1] as HTMLTextAreaElement;
       const spacesOnly = /^[\s]*$/;
-      const cleanInput = textArea.value.split('\n').filter(n => n.length > 0 && !spacesOnly.test(n)).map(n => n.trim());
+      const cleanName = listName.value.trim();
+      const cleanItems = listItems.value.split('\n').filter(n => n.length > 0 && !spacesOnly.test(n)).map(n => n.trim());
 
-      if (cleanInput.length < 1) {
-        alert("You didn't add anything dummy.")
+      if (cleanName.length < 1) {
+        alert("Name is required.")
+      } else if (cleanItems.length < 1) {
+        alert("List Items are required.")
       } else {
-        onAction?.(cleanInput);
+        onAction?.(cleanItems);
+        data[cleanName] = cleanItems;
         isActive(false);
       }
     }
   
     return (
       <div className='flex flex-col items-center justify-center absolute top-0 left-0 w-full h-full z-50'>
-        <div className='w-72 basis-1/2 bg-white dark:bg-dark-gray-1 p-2 rounded-md shadow-lg'>
-          <form method='post' onSubmit={handleSubmit} className='flex flex-col items-center justify-center h-full w-full gap-y-4 p-4 text-black dark:text-white'>
-            <label htmlFor={inputID}>
-              Name of list:
-              <input 
-                id={inputID} 
-                className='bg-white dark:bg-dark-gray-2 border-2 border-solid border-black dark:border-white w-full'>                 
-              </input>
-            </label>
-            <label htmlFor={textAreaID}>
-              List items:
-              <textarea 
-                id={textAreaID} 
-                rows={15} 
-                className='resize-none bg-white dark:bg-dark-gray-2 border-2 border-solid border-black dark:border-white w-full' 
-                required>                 
-              </textarea>
-            </label>
-            <div className='flex justify-between text-xs w-full px-3 text-white'>
-              <Button text='Close' onCustomClick={() => isActive(false) } styles='bg-dark-gray-2'/>
-              <Button text='Insert' styles='bg-dark-gray-2' type='submit' onCustomClick={onCustomClick}/>
-            </div>
-          </form>
-        </div>
+        <form method='post' onSubmit={handleSubmit} 
+          className='flex flex-col items-center justify-center gap-y-4 p-6 text-black dark:text-white w-72 basis-1/2 bg-white dark:bg-dark-gray-1 rounded-md shadow-lg'>
+          <label htmlFor={inputID}>
+            Name of list:
+            <input 
+              id={inputID}
+              type='text' 
+              className='bg-white dark:bg-dark-gray-2 border-2 border-solid border-black dark:border-white w-full'
+              required>                 
+            </input>
+          </label>
+          <label htmlFor={textAreaID}>
+            List items:
+            <textarea 
+              id={textAreaID} 
+              rows={15} 
+              className='resize-none bg-white dark:bg-dark-gray-2 border-2 border-solid border-black dark:border-white w-full' 
+              required>                 
+            </textarea>
+          </label>
+          <div className='flex justify-between text-xs w-full text-white'>
+            <Button text='Close' onCustomClick={() => isActive(false) } styles='bg-dark-gray-2'/>
+            <Button text='Insert' styles='bg-dark-gray-2' type='submit' onCustomClick={onCustomClick}/>
+          </div>
+        </form>
       </div>
     )
 }
