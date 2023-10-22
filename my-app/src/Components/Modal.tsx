@@ -4,7 +4,7 @@ import { Button } from '.'
 type InsertFormProps = {
   isActive: Function;
   onInsert: Function;
-  onCustomClick?: Function;
+  onCustomClick: Function;
 }
 
 function InsertForm({ isActive, onInsert, onCustomClick }: InsertFormProps) {
