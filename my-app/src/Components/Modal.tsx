@@ -11,6 +11,7 @@ type ModalProps = {
 }
 
 function InsertForm({ isActive, onAction, onCustomClick }: ModalProps) {
+    const inputID = useId();
     const textAreaID = useId();
   
     function handleSubmit(e: FormEvent<HTMLFormElement> & {target: HTMLFormElement}): void {
@@ -29,11 +30,25 @@ function InsertForm({ isActive, onAction, onCustomClick }: ModalProps) {
   
     return (
       <div className='flex flex-col items-center justify-center absolute top-0 left-0 w-full h-full z-50'>
-        <div className='w-72 h-[32rem] bg-white dark:bg-dark-gray-1 p-2 rounded-md shadow-lg'>
-          <form method='post' onSubmit={handleSubmit} className='flex flex-col items-center justify-center h-[31rem] gap-y-4'>
-            <label htmlFor={textAreaID} className='text-black dark:text-white'>Type the names in your class.</label>
-            <textarea id={textAreaID} rows={15} className='resize-none bg-dark-gray-2' required></textarea>
-            <div className='flex justify-between text-xs w-64 px-3'>
+        <div className='w-72 basis-1/2 bg-white dark:bg-dark-gray-1 p-2 rounded-md shadow-lg'>
+          <form method='post' onSubmit={handleSubmit} className='flex flex-col items-center justify-center h-full w-full gap-y-4 p-4 text-black dark:text-white'>
+            <label htmlFor={inputID}>
+              Name of list:
+              <input 
+                id={inputID} 
+                className='bg-white dark:bg-dark-gray-2 border-2 border-solid border-black dark:border-white w-full'>                 
+              </input>
+            </label>
+            <label htmlFor={textAreaID}>
+              List items:
+              <textarea 
+                id={textAreaID} 
+                rows={15} 
+                className='resize-none bg-white dark:bg-dark-gray-2 border-2 border-solid border-black dark:border-white w-full' 
+                required>                 
+              </textarea>
+            </label>
+            <div className='flex justify-between text-xs w-full px-3 text-white'>
               <Button text='Close' onCustomClick={() => isActive(false) } styles='bg-dark-gray-2'/>
               <Button text='Insert' styles='bg-dark-gray-2' type='submit' onCustomClick={onCustomClick}/>
             </div>
@@ -49,7 +64,7 @@ function MobileSearchInput({ isActive }: ModalProps) {
   function handleOnInputChange(e: ChangeEvent<HTMLInputElement>): void {
     const displayList: string[] = [];
 
-    for (const name in data.list) {
+    for (const name in data) {
       const input = e.target.value;
       if (input.length > 0 && name.startsWith(input)) {
         displayList.push(name);

@@ -14,7 +14,7 @@ function SearchBar({ placeText }: SearchBarProps) {
   function handleOnInputChange(e: ChangeEvent<HTMLInputElement>): void {
     const displayList: string[] = [];
 
-    for (const name in data.list) {
+    for (const name in data) {
       const input = e.target.value;
       if (input.length > 0 && name.startsWith(input)) {
         displayList.push(name);

@@ -7,7 +7,6 @@ type CardProps = {
   title: string;
   listToDisplay: string[];
   handleClick?: Function;
-
 }
 
 function Card({ title, listToDisplay, handleClick }: CardProps) {
@@ -46,7 +45,7 @@ function Card({ title, listToDisplay, handleClick }: CardProps) {
         <img src={edit} className='hover:cursor-pointer' onClick={handleClickRandomize}/>
       </div>
       <div className="hover:cursor-pointer" onClick={handleClickCopy}>
-        <List customList={list.length === 0 ? listToDisplay : list} styles='text-center p-2 overflow-y-auto basis-11/12 w-full empty:hidden'/>
+        <List customList={list.length === 0 ? listToDisplay : list} styles='text-center p-2 overflow-y-auto basis-full w-full empty:hidden'/>
       </div>
     </div>
   )
