@@ -44,7 +44,6 @@ function InsertForm({ isActive, onAction, onCustomClick }: ModalProps) {
 }
 
 function MobileSearchInput({ isActive }: ModalProps) {
-  const [showList, setShowList] = useState(false);
   const [searchList, setSearchList] = useState<string[]>([]);
 
   function handleOnInputChange(e: ChangeEvent<HTMLInputElement>): void {
@@ -68,8 +67,6 @@ function MobileSearchInput({ isActive }: ModalProps) {
             type='text' 
             placeholder="Search for lists to use"
             className='text-black dark:text-white bg-transparent px-2' 
-            onFocus={() => setShowList(true)}
-            onBlur={() => setShowList(false)}
             onChange={handleOnInputChange}/>
         </div>
         <img src={mic} />
