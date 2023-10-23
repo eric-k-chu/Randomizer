@@ -1,4 +1,3 @@
-
 let data: Record<string, string[]> = {
   'class-1': ['bob', 'john', 'joe'],
   'class-2': ['bob', 'john', 'joe'],

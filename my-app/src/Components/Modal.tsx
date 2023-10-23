@@ -27,7 +27,7 @@ function InsertForm({ isActive, onAction, onCustomClick }: ModalProps) {
       } else if (cleanItems.length < 1) {
         alert("List Items are required.")
       } else {
-        onAction?.(cleanItems);
+        onAction?.(cleanName, cleanItems);
         data[cleanName] = cleanItems;
         isActive(false);
       }

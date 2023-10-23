@@ -1,10 +1,15 @@
 import { Button, InsertForm, Card } from '../Components'
 import { useState } from 'react';
 
+type CurrentList = {
+  name: string;
+  list: string[];
+}
+
 const buttonStyle1 = 'rounded-3xl w-40 bg-dark-gray-1 transform transition duration-500 hover:scale-110 shadow-md dark:shadow-zinc-700';
 
 type BodyProps = {
-  currentList: string[];
+  currentList: CurrentList;
   setCurrentList: Function;
 }
 
@@ -20,7 +25,7 @@ function Body({ currentList, setCurrentList }: BodyProps) {
       copy.splice(randIndex, 1);
 
       if (copy.length === 0) {
-        setCopy(currentList.slice(0));
+        setCopy(currentList.list.slice(0));
       }
 
     } else {
@@ -28,8 +33,8 @@ function Body({ currentList, setCurrentList }: BodyProps) {
     }
   }
 
-  function handleInsertClassList(insertList: string[]): void {
-    setCurrentList(insertList.slice(0));
+  function handleInsertClassList(name: string, insertList: string[]): void {
+    setCurrentList({ name, list: insertList.slice(0) });
     setCopy(insertList.slice(0));
   }
 
@@ -46,7 +51,7 @@ function Body({ currentList, setCurrentList }: BodyProps) {
           <p className='w-full text-center text-black dark:text-white'>{showRandomName}</p>
         </div>
         <div className='basis-1/3 flex justify-center items-center h-full'>
-          <Card title='List' listToDisplay={currentList} handleClick={() => setShowModal(true)}/>
+          <Card currentList={currentList} handleClick={() => setShowModal(true)} setCurrentList={handleInsertClassList}/>
         </div>
       </div>
     </div>

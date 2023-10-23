@@ -1,9 +1,15 @@
 import { NavBar, Body, Footer } from './Layout/index'
 import { useState } from 'react'
+import data from './data'
+
+type CurrentList = {
+  name: string;
+  list: string[];
+}
 
 function App() {
   const [isDarkMode, setDarkMode] = useState(false);
-  const [currentList, setCurrentList] = useState<string[]>([]);
+  const [currentList, setCurrentList] = useState<CurrentList>({ name: Object.keys(data)[0], list: Object.values(data)[0]});
 
   return (
     <div className={isDarkMode ? 'dark' : 'light'} >
