@@ -3,12 +3,13 @@ import { useState } from 'react'
 
 function App() {
   const [isDarkMode, setDarkMode] = useState(false);
+  const [currentList, setCurrentList] = useState<string[]>([]);
 
   return (
     <div className={isDarkMode ? 'dark' : 'light'} >
       <div className='bg-[#F5F5F5] dark:bg-dark-gray-2 h-screen w-screen flex flex-col items-center gap-y-4'>
         <NavBar isDarkMode={isDarkMode} setDarkMode={setDarkMode}/>
-        <Body />
+        <Body currentList={currentList} setCurrentList={setCurrentList}/>
         <Footer isDarkMode={isDarkMode}/>
       </div>
     </div>
