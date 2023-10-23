@@ -1,7 +1,7 @@
 import { List } from './index';
 import edit from '../assets/shuffle-solid.svg';
 import plus from '../assets/circle-plus.svg';
-import { useState, ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import data from '../data'
 
 type CurrentList = {
@@ -16,7 +16,6 @@ type CardProps = {
 }
 
 function Card({ currentList, handleClick, setCurrentList }: CardProps) {
-  const [list, setList] = useState<string[]>([]);
 
   function handleClickCopy(): void {
     if (currentList.list.length > 0) {
@@ -36,7 +35,7 @@ function Card({ currentList, handleClick, setCurrentList }: CardProps) {
         randomList.push(copyList[randIndex]);
         copyList.splice(randIndex, 1);
       }
-      setList(randomList);
+      setCurrentList(currentList.name, randomList)
     } else {
       alert('List is empty.');
     }
