@@ -1,9 +1,15 @@
 import Button from './Button'
-import List from './List'
-import Modal from './Modal'
+import { List, SearchList } from './List'
+import { InsertForm, MobileSearchInput } from './Modal'
+import Card from './Card'
+import SearchBar from './SearchBar'
 
 export {
 	Button,
 	List,
-	Modal
+	InsertForm,
+	Card,
+	SearchBar,
+	SearchList,
+	MobileSearchInput
 }

@@ -1,76 +1,58 @@
-import { Button, List, Modal } from '../Components/index'
+import { Button, InsertForm, Card } from '../Components'
 import { useState } from 'react';
 
-let classList = [
-  'Kaitlin',
-  'Ross',
-  'Tyler',
-  'Thomas',
-  'Cathy',
-  'Omid',
-  'Jeremy',
-  'Julie',
-  'Ethan',
-  'Eric',
-  'Andrew',
-  'Bug',
-  'Daniel'
-];
+type CurrentList = {
+  name: string;
+  list: string[];
+}
 
-const copyList = classList.map(n => n);
+const buttonStyle1 = 'rounded-3xl w-40 bg-dark-gray-1 transform transition duration-500 hover:scale-110 shadow-md dark:shadow-zinc-700';
 
-const completedList: string[] = [];
+type BodyProps = {
+  currentList: CurrentList;
+  setCurrentList: Function;
+}
 
-let modalText = "";
-
-function Body() {
-  const [list, setList] = useState<string[]>([]);
-  const [isComplete, setComplete] = useState(false);
+function Body({ currentList, setCurrentList }: BodyProps) {
+  const [copy, setCopy] = useState<string[]>([]);
   const [showModal, setShowModal] = useState(false);
+  const [showRandomName, setShowRandomName] = useState("");
 
-  function handleRandomAdd(): void {
-    if (classList.length) {
-      const randIndex = Math.floor(Math.random() * classList.length);
-      completedList.push(classList[randIndex]);
-      const newList = [...list, classList[randIndex]];
-      classList.splice(randIndex, 1);
-      setList(newList);
+  function handleGetRandom(): void {
+    if (copy.length > 0) {
+      const randIndex = Math.floor(Math.random() * copy.length);
+      setShowRandomName(copy[randIndex]);
+      copy.splice(randIndex, 1);
+
+      if (copy.length === 0) {
+        setCopy(currentList.list.slice(0));
+      }
+
     } else {
-      setComplete(true);
+      alert('You have no items in the current list.');
     }
   }
 
-  function handleCopyList(): void {
-    const copiedText = completedList.join('\n');
-    navigator.clipboard.writeText(copiedText);
-    modalText = 'Copied to Clipboard.';
-    setShowModal(true);
-  }
-
-  function handleReset(): void {
-    classList = copyList.map(n => n);
-    setList([]);
-    setComplete(false);
-
+  function handleInsertClassList(name: string, insertList: string[]): void {
+    setCurrentList({ name, list: insertList.slice(0) });
+    setCopy(insertList.slice(0));
   }
 
   return (
-    <div className='container mx-auto basis-11/12'>
+    <div className='container mx-auto basis-10/12 flex flex-col items-center justify-center'>
       
-      {showModal && <Modal modalText={modalText} isActive={setShowModal}/>}
+      {showModal && <InsertForm isActive={setShowModal} onAction={handleInsertClassList} />}
 
-      <div className='flex flex-col items-center gap-y-4 p-4'>
-        <List customList={list} styles='text-center h-[35rem]'/>
-      </div>
-
-      <div className='flex justify-around items-center'>
-        { isComplete &&
-          <Button text="Copy List" onCustomClick={handleCopyList} styles='rounded-3xl w-40 bg-dark-gray-1'/>
-        }
-        <Button text="Get Random" onCustomClick={handleRandomAdd} styles='rounded-3xl w-40 bg-dark-gray-1'/>
-        { isComplete &&
-          <Button text="Reset" onCustomClick={handleReset} styles='rounded-3xl w-40 bg-dark-gray-1'/>
-        }
+      <div className='flex-wrap flex-col lg:flex-row lg:flex-nowrap flex justify-center basis-3/4 w-full text-black dark:text-white'>
+        <div className='basis-1/3 flex flex-col justify-center items-center text-white'>
+          <Button text="Get Random" onCustomClick={handleGetRandom} styles={buttonStyle1}/>
+        </div>
+        <div className='basis-1/3 flex flex-col items-center justify-center'>
+          <p className='w-full text-center text-black dark:text-white'>{showRandomName}</p>
+        </div>
+        <div className='basis-1/3 flex justify-center items-center h-full'>
+          <Card currentList={currentList} handleClick={() => setShowModal(true)} setCurrentList={handleInsertClassList}/>
+        </div>
       </div>
     </div>
   )

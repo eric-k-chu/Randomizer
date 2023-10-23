@@ -29,9 +29,13 @@ export default {
           '50%' : { opacity: '0.5'},
           '100%' : { opacity: '0' }
         }
+      },
+      backgroundImage: {
+        'logo': 'url("./src/assets/circle-question-regular.svg")'
       }
     },
   },
   plugins: [],
+  darkMode: 'class'
 }
 
